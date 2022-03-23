@@ -67,3 +67,14 @@ body {
   cursor: pointer;
   color: white;
 }
+footer {
+  display: block;
+  justify-content: center;
+  padding: 0px;
+  margin: 0 auto;
+  position: relative;
+  bottom: 56px;
+  right: 76px;
+  color: black;
+  max-width: 250px;
+}
