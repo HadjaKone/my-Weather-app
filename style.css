@@ -1,0 +1,69 @@
+body {
+  font-family: "Fredoka", sans-serif;
+}
+.col {
+  font-weight: bolder;
+}
+.searchP {
+  display: block;
+  position: relative;
+  left: 100px;
+}
+h1 {
+  font-size: small;
+  margin: 10px 0 0;
+  font-weight: 100;
+}
+ul {
+  list-style: none;
+  margin: 15px 0 0;
+  list-style: none;
+  font-size: small;
+}
+.city {
+  font-size: 25px;
+  font-weight: bolder;
+}
+.temperature {
+  font-size: 3rem;
+  margin: auto;
+}
+a:hover {
+  color: aliceblue;
+}
+.precipitation {
+  position: absolute;
+  top: 150px;
+  left: 140px;
+  list-style: none;
+}
+.card {
+  display: block;
+  margin: 0px;
+  margin: 60px auto;
+  background-color: #4c4d4e;
+  border-color: #ddd;
+  max-width: 600px;
+  padding: 15px;
+}
+.emojis {
+  margin: 0 0 50px;
+  font-size: small;
+}
+body {
+  color: white;
+}
+.card img {
+  max-width: 100%;
+}
+.current-search {
+  background-color: green;
+  display: block;
+  position: absolute;
+  left: 350px;
+  top: 33px;
+}
+.current-search:hover {
+  cursor: pointer;
+  color: white;
+}
