@@ -28,14 +28,21 @@ ul {
   font-size: 3rem;
   margin: auto;
 }
+.units {
+  font-weight: 400;
+  position: fixed;
+  text-decoration: none;
+  list-style: none;
+}
 a:hover {
   color: aliceblue;
 }
 .precipitation {
   position: absolute;
   top: 150px;
-  left: 140px;
+  right: 20px;
   list-style: none;
+  font-size: medium;
 }
 .card {
   display: block;
@@ -65,7 +72,8 @@ body {
 }
 .current-search:hover {
   cursor: pointer;
-  color: white;
+  color: orange;
+  background-color: red;
 }
 footer {
   display: block;
@@ -77,4 +85,11 @@ footer {
   right: 76px;
   color: black;
   max-width: 250px;
+}
+.active {
+  color: white;
+  cursor: default;
+}
+.active:hover {
+  text-decoration: none;
 }

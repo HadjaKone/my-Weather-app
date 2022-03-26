@@ -27,7 +27,7 @@
           <div class="card-body" id="text-input">
             <form class="search-form" id="search-form">
               <div class="row">
-                <div class="col-6">
+                <div class="col-5">
                   <input
                     type="search"
                     placeholder="Type a city.."
@@ -44,7 +44,7 @@
                     class="form-control btn btn-primary shadow-sm w-100"
                   />
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                   <button
                     class="btn btn-success w-100"
                     id="current-location-button"
@@ -57,7 +57,9 @@
             <h1>
               <ul>
                 <li class="city" id="city">Dallas Tx, United States</li>
-                <li id="currentDate">Thursday 12:00AM</li>
+                <li>
+                  Last Update <span id="currentDate">Thursday 12:00AM</span>
+                </li>
                 <li id="description">description</li>
               </ul>
             </h1>
@@ -65,10 +67,14 @@
               <img
                 src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png"
                 alt="sunny"
+                class="float-left"
+                id="icon"
               />
               <span class="temperature" id="changeTemp">9</span>
-              <a href="#" id="celsus">&deg;C </a>
-              <!-- <a href="#" id="fahrenheit">&deg;F</a> -->
+              <span class="units">
+                <a href="#" id="celsus-link" class="active">&deg;C </a>|
+                <a href="#" id="fahrenheit-link">&deg;F</a>
+              </span>
             </div>
             <ul class="precipitation">
               <li id="wind">Wind: 2Km/h</li>
