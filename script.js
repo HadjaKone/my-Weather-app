@@ -83,10 +83,10 @@ function getPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(currentTemperature);
 }
-// navigator.geolocation.getCurrentPosition(currentTemperature);
-// let currentSearch = document.querySelector("#current-location-button");
+navigator.geolocation.getCurrentPosition(currentTemperature);
+let currentSearch = document.querySelector("#current-location-button");
 
-// currentSearch.addEventListener("click", getPosition);
+currentSearch.addEventListener("click", getPosition);
 function FahrenheitToCelsus(event) {
   event.preventDefault();
   //remove the active class the celsius link
