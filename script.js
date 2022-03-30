@@ -23,6 +23,32 @@ function formartDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let weatherF = document.querySelector("#forecast");
+
+  let forcastHtml = `<div class="row"> `;
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  days.forEach(function (day) {
+    forcastHtml =
+      forcastHtml +
+      ` <div class="col-2">
+              <div class="weather-forecast-date">${day}</div>
+              <img
+                src="https://freepngimg.com/thumb/weather/23648-2-weather-picture.png"
+                alt=""
+                width="36"
+              />
+              <div class="weather-forecast-temp">
+                  <span class="weather-forecast-temp-max"> -4&deg;</span>
+                  <span class="weather-forecast-temp-min">12&deg; </span>
+              </div>
+          </div>`;
+  });
+
+  forcastHtml = forcastHtml + `</div>`;
+  weatherF.innerHTML = forcastHtml;
+}
+
 function showCityWeather(response) {
   console.log(response.data);
 
@@ -109,3 +135,5 @@ fahTemp.addEventListener("click", celsusToFahrenheit);
 
 let celsusTemp = document.querySelector("#celsus-link");
 celsusTemp.addEventListener("click", FahrenheitToCelsus);
+
+displayForecast();
