@@ -53,9 +53,10 @@ a:hover {
   max-width: 600px;
   padding: 15px;
 }
-.emojis {
+.weather-forecast {
   margin: 0 0 50px;
   font-size: small;
+  text-align: center;
 }
 body {
   color: white;
