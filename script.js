@@ -23,41 +23,65 @@ function formartDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecastdays = response.data.daily;
   let weatherF = document.querySelector("#forecast");
 
   let forcastHtml = `<div class="row"> `;
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
-  days.forEach(function (day) {
-    forcastHtml =
-      forcastHtml +
-      ` <div class="col-2">
-              <div class="weather-forecast-date">${day}</div>
+  forecastdays.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forcastHtml =
+        forcastHtml +
+        ` <div class="col-2">
+              <div class="weather-forecast-date">${formatDay(
+                forecastDay.dt
+              )}</div>
               <img
-                src="https://freepngimg.com/thumb/weather/23648-2-weather-picture.png"
+                src="https://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }@2x.png"
                 alt=""
                 width="36"
               />
               <div class="weather-forecast-temp">
-                  <span class="weather-forecast-temp-max"> -4&deg;</span>
-                  <span class="weather-forecast-temp-min">12&deg; </span>
+                  <span class="weather-forecast-temp-max">${Math.round(
+                    forecastDay.temp.max
+                  )}&deg;</span>
+                  <span class="weather-forecast-temp-min">${Math.round(
+                    forecastDay.temp.min
+                  )}&deg; </span>
               </div>
           </div>`;
+    }
   });
 
   forcastHtml = forcastHtml + `</div>`;
   weatherF.innerHTML = forcastHtml;
 }
 
-function showCityWeather(response) {
-  console.log(response.data);
+function getForecast(coordinates) {
+  let apikey = "5f06a1bf391e643a7da238959ea0baa6";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apikey}&units=metric`;
 
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function showCityWeather(response) {
   celsiusTemperature = response.data.main.temp;
   let icon = document.querySelector("#icon");
   icon.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  icon.setAttribute("alt", response.data.weather[0].description);
 
   let date = document.querySelector("#currentDate");
   date.innerHTML = formartDate(response.data.dt * 1000);
@@ -74,6 +98,8 @@ function showCityWeather(response) {
   document.querySelector(
     "#description"
   ).innerHTML = `${response.data.weather[0].main}`;
+
+  getForecast(response.data.coord);
 }
 
 function searchCity(event) {
@@ -85,6 +111,7 @@ function searchCity(event) {
 
   axios.get(apiUrl).then(showCityWeather);
 }
+
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity);
 //part 2
@@ -111,8 +138,8 @@ function getPosition(event) {
 }
 navigator.geolocation.getCurrentPosition(currentTemperature);
 let currentSearch = document.querySelector("#current-location-button");
-
 currentSearch.addEventListener("click", getPosition);
+
 function FahrenheitToCelsus(event) {
   event.preventDefault();
   //remove the active class the celsius link
@@ -121,6 +148,7 @@ function FahrenheitToCelsus(event) {
   document.querySelector("#changeTemp").innerHTML =
     Math.round(celsiusTemperature);
 }
+
 function celsusToFahrenheit(event) {
   event.preventDefault();
   celsusTemp.classList.remove("active");
@@ -129,6 +157,7 @@ function celsusToFahrenheit(event) {
   let ftemp = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(ftemp);
 }
+
 let celsiusTemperature = null;
 let fahTemp = document.querySelector("#fahrenheit-link");
 fahTemp.addEventListener("click", celsusToFahrenheit);
@@ -136,4 +165,4 @@ fahTemp.addEventListener("click", celsusToFahrenheit);
 let celsusTemp = document.querySelector("#celsus-link");
 celsusTemp.addEventListener("click", FahrenheitToCelsus);
 
-displayForecast();
+searchCity("New york");
