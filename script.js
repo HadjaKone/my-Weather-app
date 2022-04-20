@@ -164,5 +164,3 @@ fahTemp.addEventListener("click", celsusToFahrenheit);
 
 let celsusTemp = document.querySelector("#celsus-link");
 celsusTemp.addEventListener("click", FahrenheitToCelsus);
-
-searchCity("New york");
