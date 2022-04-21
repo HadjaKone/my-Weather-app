@@ -142,7 +142,6 @@ currentSearch.addEventListener("click", getPosition);
 
 function FahrenheitToCelsus(event) {
   event.preventDefault();
-  //remove the active class the celsius link
   fahTemp.classList.remove("active");
   celsusTemp.classList.add("active");
   document.querySelector("#changeTemp").innerHTML =
